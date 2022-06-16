@@ -1,18 +1,36 @@
-function buildGrid(x, y, cellSize, gridElement) {
-    gridElement.style.display = "grid";
-    gridElement.style.gridTemplateColumns = `repeat(${x}, ${cellSize}px)`;
-    gridElement.style.gridTemplateRows = `repeat(${y}, ${cellSize}px)`;
-   
-    let squares = new DocumentFragment();
-  
-    for (let i = 0; i < x * y; i++) {
-      let square = document.createElement('div');
-      square.className = 'square';
-      squares.appendChild(square);
-    }
-  
-    gridElement.appendChild(squares);
-  }
-  
-  
-  buildGrid(16, 16, 25,  document.querySelector(".grid"));
+const container = document.getElementById("container");
+
+function makeRows(rows, cols) {
+    container.style.setProperty('--grid-rows', rows);
+    container.style.setProperty('--grid-cols', cols);
+    for (c = 0; c < (rows * cols); c++) {
+      let cell = document.createElement("div");
+      container.appendChild(cell).className = "grid-item";
+    };
+};
+
+function newGrid(rows, cols) {
+    container.style.setProperty('--grid-rows', rows);
+    container.style.setProperty('--grid-cols', cols);
+    for (c = 0; c < (rows * cols); c++) {
+      let cell = document.createElement("div");
+      container.appendChild(cell).className = "grid-item";
+    };
+};
+
+makeRows(64, 64)
+
+let gridItems = document.querySelectorAll(".grid-item");
+gridItems.forEach((row) => {
+    row.addEventListener('mouseover', event => {
+        row.style.background = 'black'
+    })
+});
+
+let button = document.getElementById("button");
+button.addEventListener("click", function(event) {
+    let userChoice = prompt("Choose grid size")
+    
+});
+
+
